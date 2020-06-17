@@ -72,14 +72,10 @@ app.put("/repositories/:id", repositoryExists,(request, response) => {
   return response.json(repository)
 });
 
-app.delete("/repositories/:id", repositoryExists, (request, response) => {
+app.delete("/repositories/:id", (request, response) => {
   const {id} = request.params
-
-  const repositoryIndex = repositories.findIndex(element => element.id == id)
-
-  const repository = repositories[repositoryIndex]
-
-  repositories.splice(repository, 1);
+  const repositoryIndex = repositories.findIndex(repository => repository.id == id)
+  repositories.splice(repositoryIndex, 1);
 
   return response.status(204).json({message:"Field Deleted"})
 
